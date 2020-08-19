@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: game-demo
+spec:
+  type: loadBalancer
+  selector:
+    app: game-demo
+  ports:
+    - protocol: TCP
+      port: 80
