@@ -1,0 +1,32 @@
+apiVersion: app/v1
+kind: Deployment
+metadata:
+  name: mongodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongodb
+  template:
+    metadata:
+      labels:
+        app: mongodb
+    spec:
+      containers:
+      - name: mongodb
+        image: mongodb:3.6.19-xenial
+        ports:
+          containerPort: 27017
+        volumeMounts:
+        - name: mongodb-configuration-file
+          mountPath: /etc/mongod.conf
+          readOnly: true
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql
+    volumes:
+    - name: mysql-persistent-storage
+      persistentVolumeClaim:
+        claimName: mysql-pv-claim
+    - name: mongodb-configuration-file
+      configMap:
+        name: mongodb-config-file
