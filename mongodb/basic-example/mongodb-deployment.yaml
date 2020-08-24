@@ -1,4 +1,4 @@
-apiVersion: app/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mongodb
@@ -14,19 +14,22 @@ spec:
     spec:
       containers:
       - name: mongodb
-        image: mongodb:3.6.19-xenial
+        image: mongo:3.6.19-xenial
         ports:
-          containerPort: 27017
+          - containerPort: 27017
+        envFrom:
+        - secretRef:
+            name: mongodb-secret
         volumeMounts:
-        - name: mongodb-configuration-file
-          mountPath: /etc/mongod.conf
-          readOnly: true
-        - name: mysql-persistent-storage
-          mountPath: /var/lib/mysql
-    volumes:
-    - name: mysql-persistent-storage
-      persistentVolumeClaim:
-        claimName: mysql-pv-claim
-    - name: mongodb-configuration-file
-      configMap:
-        name: mongodb-config-file
+        #- name: mongodb-configuration-file
+        #  mountPath: /etc/mongod.conf
+        #  readOnly: true
+        - name: mongodb-persistent-storage
+          mountPath: /data/db
+      volumes:
+      - name: mongodb-persistent-storage
+        persistentVolumeClaim:
+          claimName: mongodb-pv-claim
+      #- name: mongodb-configuration-file
+      #  configMap:
+      #    name: mongodb-config-file
