@@ -1,0 +1,30 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: mongodb-backup
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: mongodb-backup
+            image: mongo:4.4.0-bionic
+            args:
+            - "/bin/sh"
+            - "-c"
+            - "/usr/bin/mongodump -u $MONGO_INITDB_ROOT_USERNAME -p $MONGO_INITDB_ROOT_PASSWORD -o /tmp/backup -h mongodb"
+            - "tar cvzf mongodb-backup.tar.gz /tmp/backup"
+            #- gsutil cp mongodb-backup.tar.gz gs://my-project/backups/mongodb-backup.tar.gz
+            envFrom:
+            - secretRef:
+                name: mongodb-secret
+            volumeMounts:
+            - name: mongodb-persistent-storage
+              mountPath: /data/db
+          restartPolicy: OnFailure
+          volumes:
+          - name: mongodb-persistent-storage
+            persistentVolumeClaim:
+              claimName: mongodb-pv-claim
