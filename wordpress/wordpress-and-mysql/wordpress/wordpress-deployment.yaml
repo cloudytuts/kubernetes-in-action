@@ -26,8 +26,8 @@ spec:
                   - name: WORDPRESS_DB_HOST
                     valueFrom:
                       configMapKeyRef:
-                         name: wordpress
-                         key: db.host
+                        name: wordpress
+                        key: db.host
                   - name: WORDPRESS_DB_USER
                     valueFrom:
                       secretKeyRef:
@@ -41,7 +41,7 @@ spec:
                   - name: WORDPRESS_DB_NAME
                     valueFrom:
                       configMapKeyRef:
-                        name: wordpress
+                        name: wordpress-mysql
                         key: db.name
                   - name: WORDPRESS_TABLE_PREFIX
                     valueFrom:

@@ -26,11 +26,21 @@ spec:
             secretKeyRef:
               name: wordpress-mysql
               key: db.root.password
-        - name: MYSQL_DB_NAME
+        - name: MYSQL_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: wordpress-mysql
+              key: db.name
+        - name: MYSQL_USER
           valueFrom:
             secretKeyRef:
               name: wordpress-mysql
-              key: db.name
+              key: db.user
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: wordpress-mysql
+              key: db.password
         ports:
         - containerPort: 3306
           name: mysql
