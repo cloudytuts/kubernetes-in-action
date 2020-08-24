@@ -1,0 +1,22 @@
+{
+    "title": "I am the title",
+    "content": "",
+    "meta": {
+        "likes": [
+            {
+                "username": "@serverlabca",
+            },
+            {
+                "username": "@bob"
+            }
+        ]
+    }
+    "author": {
+        "name": "Snubs",
+        "username": "@snubs",
+        "twitter": "@snubs",
+        "github": "snubs",
+        "bio": "Hello, stay awhile!"
+    }
+
+}

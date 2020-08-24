@@ -1,0 +1,14 @@
+const articles = [
+    {
+        name: 'learn-react',
+        title: 'The Fastest Way to Learn React',
+        content: [
+            `Welcome! Today we are going to be talking about the learn React. We will be discussing some topics such as.`,
+            `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Cursus vitae congue mauris rhoncus aenean vel elit scelerisque mauris. Euismod quis viverra nibh cras pulvinar mattis. Dictum varius duis at consectetur lorem. Vehicula ipsum a arcu cursus vitae. Ut eu sem integer vitae justo eget magna fermentum. Nisl vel pretium lectus quam id leo. Tempus imperdiet nulla malesuada pellentesque elit eget gravida cum sociis. In dictum non consectetur a erat nam at lectus urna. Ultricies mi eget mauris pharetra et ultrices. Orci ac auctor augue mauris augue neque gravida. In est ante in nibh mauris cursus mattis. Sit amet facilisis magna etiam tempor orci. Non quam lacus suspendisse faucibus interdum posuere. Consectetur lorem donec massa sapien faucibus et molestie ac feugiat. Feugiat nibh sed pulvinar proin gravida. Nunc mi ipsum faucibus vitae aliquet. Vivamus arcu felis bibendum ut tristique.`,
+            `Vitae proin sagittis nisl rhoncus mattis rhoncus urna neque. Tortor aliquam nulla facilisi cras. Mattis aliquam faucibus purus in massa tempor nec feugiat. Consectetur adipiscing elit pellentesque habitant. Sed velit dignissim sodales ut. Sit amet consectetur adipiscing elit ut. Nunc eget lorem dolor sed. Aliquam id diam maecenas ultricies. Nunc sed id semper risus in hendrerit gravida rutrum. Ultrices mi tempus imperdiet nulla malesuada pellentesque. Mauris sit amet massa vitae tortor. At varius vel pharetra vel turpis nunc eget. Ut diam quam nulla porttitor massa id. In hac habitasse platea dictumst quisque sagittis purus sit amet. Tempus iaculis urna id volutpat lacus. Viverra mauris in aliquam sem fringilla ut morbi tincidunt augue. Scelerisque viverra mauris in aliquam sem fringilla ut morbi. Ut tortor pretium viverra suspendisse potenti. Non curabitur gravida arcu ac tortor.`,
+            `Donec enim diam vulputate ut pharetra. Luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. Neque aliquam vestibulum morbi blandit cursus risus at. Commodo nulla facilisi nullam vehicula ipsum a arcu cursus. Et odio pellentesque diam volutpat commodo sed egestas egestas fringilla. In hendrerit gravida rutrum quisque non tellus orci ac auctor. Lacus luctus accumsan tortor posuere ac ut consequat semper. Ut placerat orci nulla pellentesque dignissim enim sit. Dignissim suspendisse in est ante in nibh mauris cursus mattis. In vitae turpis massa sed elementum tempus egestas. Parturient montes nascetur ridiculus mus. Nibh sit amet commodo nulla facilisi nullam vehicula.`
+        ]
+    }
+];
+
+export default articles;
