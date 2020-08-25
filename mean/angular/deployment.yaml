@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: angular-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: angular-app
+  template:
+    metadata:
+      labels:
+        app: angular-app
+    spec:
+      containers:
+      - name: angular-app
+        image: myproject/angular-app:1.0.0
+        ports:
+          - containerPort: 80
+        env:
+        - name: BACKEND_API_HOST
+          value: express-app.default.svc
+        - name: BACKEND_API_KEY
+          valueFrom:
+            secretKeyRef:
+                name: angular-app
+                key: BACKEND_API_KEY
