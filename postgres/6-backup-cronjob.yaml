@@ -1,0 +1,29 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: postgres-backup
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: postgres-backup
+            image: google/cloud-sdk:alpine
+            args:
+            - apk --update add postgresql
+            - pg_dump -u myblog > myblog-$(date +%s).bak
+            - gsutil cp myblog.bak gs://myblog/backups
+          envFrom:
+          - secretRef:
+              name: postres-secrets
+          - configMapRef:
+              name: postgres-configmap
+          volumeMounts:
+          - name: postgres-database-storage
+            mountPath: /var/lib/pgsql/data
+        volumes:
+        - name: postgres-database-storage
+          persistentVolumeClaim:
+            claimName: postgres-pv-claim   
