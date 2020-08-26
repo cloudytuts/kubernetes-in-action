@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins
+  namespace: cicd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jenkins
+  template:
+    metadata:
+      labels:
+        app: jenkins
+    spec:
+      containers:
+      - name: jenkins
+        image: jenkins:lts
+        ports:
+          - containerPort: 8083
+        env:
+        - name: JENKINS_OPTS
+          valueFrom:
+            configMapKeyRef:
+              name: jenkins
+              key: jenkins_opts
+        volumeMounts:
+        - name: jenkins-storage
+          mountPath: /var/lib/pgsql/data
+        - name: jenkins-tls-cert
+          mountPath: /var/lib/jenkins
+      volumes:
+      - name: jenkins-tls
+        secret:
+          secretName: jenkins-tls
+          items:
+          - key: tls.key
+            path: pk
+          - key: tls.crt
+            path: cert
+      - name: jenkins-storage
+        persistentVolumeClaim:
+          claimName: jenkins-pv-claim

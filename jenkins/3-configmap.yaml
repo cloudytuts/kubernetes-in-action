@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: jenkins
+  namespace: cicd
+data:
+  jenkins_opts: --httpPort=-1 --httpsPort=8083 --httpsCertificate=/var/lib/jenkins/cert --httpsPrivateKey=/var/lib/jenkins/pk
+  executors.groovy: |
+    import jenkins.model.*
+    Jenkins.instance.setNumExecutors(5)
