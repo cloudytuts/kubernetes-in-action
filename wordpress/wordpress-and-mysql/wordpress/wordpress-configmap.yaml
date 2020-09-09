@@ -4,5 +4,4 @@ metadata:
   name: wordpress
 data:
   db.host: wordpress-mysql
-  db.name: myblog
   db.prefix: mb_

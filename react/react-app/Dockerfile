@@ -8,5 +8,5 @@ RUN npm install \
     && ls -l
 
 # Final stage for creating the final Docker image
-FROM nginx as final
+FROM nginx:1.17 as final
 COPY --from=build /app/build/ /var/www/html
