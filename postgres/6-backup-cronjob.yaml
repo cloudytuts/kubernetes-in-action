@@ -15,15 +15,15 @@ spec:
             - apk --update add postgresql
             - pg_dump -u myblog > myblog-$(date +%s).bak
             - gsutil cp myblog.bak gs://myblog/backups
-          envFrom:
-          - secretRef:
-              name: postres-secrets
-          - configMapRef:
-              name: postgres-configmap
-          volumeMounts:
+            envFrom:
+            - secretRef:
+                name: postres-secrets
+            - configMapRef:
+                name: postgres-configmap
+            volumeMounts:
+            - name: postgres-database-storage
+              mountPath: /var/lib/pgsql/data
+          volumes:
           - name: postgres-database-storage
-            mountPath: /var/lib/pgsql/data
-        volumes:
-        - name: postgres-database-storage
-          persistentVolumeClaim:
-            claimName: postgres-pv-claim   
+            persistentVolumeClaim:
+              claimName: postgres-pv-claim   
